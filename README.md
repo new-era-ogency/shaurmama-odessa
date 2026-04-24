@@ -1,4 +1,3 @@
-# shaurmama-odessa
 <!DOCTYPE html>
 <html lang="uk">
 <head>
