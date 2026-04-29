@@ -1152,7 +1152,7 @@
       const lab = el.closest('label');
       const txt = lab ? lab.querySelector('.lang-' + lang);
       if (txt && txt.offsetParent !== null) extrasDesc.push(txt.textContent.trim());
-    });
+    }); 
     let msg =
       lang === 'bg'
         ? `Здравейте! Искам да поръчам: ${dishName}${extrasDesc.length ? '. Добавки: ' + extrasDesc.join(', ') : ''}. Обща сума: ${modalTotalDisplay ? modalTotalDisplay.textContent : ''}`
