@@ -214,6 +214,17 @@
     body.modal-open {
       overflow: hidden;
     }
+
+    /*
+      If aos.js fails to load but aos.css loaded, [data-aos] stays opacity:0 forever.
+      This fallback restores visibility when AOS is missing or fails to initialize.
+    */
+    html.aos-unavailable [data-aos],
+    html.aos-unavailable [data-aos].aos-animate {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
   </style>
 </head>
 <body class="relative">
@@ -974,11 +985,24 @@
   const LANG_STORAGE_KEY = 'shaurmama-lang';
   const WA_PHONE = '359882789795';
 
-  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
-  lucide.createIcons();
+  try {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
+    } else {
+      document.documentElement.classList.add('aos-unavailable');
+    }
+  } catch (err) {
+    document.documentElement.classList.add('aos-unavailable');
+  }
+
+  try {
+    if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+  } catch (err) {}
 
   function refreshLucide(root) {
-    if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons(root || document.body);
+    try {
+      if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons(root || document.body);
+    } catch (err) {}
   }
 
   function parseEuro(text) {
