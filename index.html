@@ -211,6 +211,18 @@
       outline-offset: 2px;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     body.modal-open {
       overflow: hidden;
     }
@@ -229,7 +241,7 @@
 </head>
 <body class="relative">
 
-<a id="skip-link" href="#hero">Перейти до основного вмісту</a>
+<a id="skip-link" href="#hero"><span class="lang-uk">Перейти до основного вмісту</span><span class="lang-bg">Към основното съдържание</span></a>
 
 <div class="marine-pattern"></div>
 
@@ -734,9 +746,9 @@
           <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
             <div class="flex flex-col pr-14">
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
-                <span class="lang-uk">Сок</span><span class="lang-bg">Сок</span>
+                <span class="lang-uk">Сок (Сік)</span><span class="lang-bg">Сок</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Juice</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">Сік</span><span class="lang-bg">Плодов сок</span></div>
             </div>
             <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">1€</span>
           </div>
@@ -751,7 +763,7 @@
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
                 <span class="lang-uk">Кола, Фанта, Спрайт</span><span class="lang-bg">Кола, Фанта, Спрайт</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Cola, Fanta, Sprite</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">Газовані напої</span><span class="lang-bg">Газирани напитки</span></div>
             </div>
             <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">1.5€</span>
           </div>
@@ -766,7 +778,7 @@
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
                 <span class="lang-uk">Живчик</span><span class="lang-bg">Живчик</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Zhivchik</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">Живчик</span><span class="lang-bg">Живчик</span></div>
             </div>
             <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">2€</span>
           </div>
@@ -781,7 +793,7 @@
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
                 <span class="lang-uk">Квас</span><span class="lang-bg">Квас</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Kvass</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">Квас</span><span class="lang-bg">Квас</span></div>
             </div>
             <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">2€</span>
           </div>
@@ -796,7 +808,7 @@
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
                 <span class="lang-uk">Пиво драфт</span><span class="lang-bg">Драфт бира</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Draft beer</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">На крані</span><span class="lang-bg">От чешма</span></div>
             </div>
             <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">4€</span>
           </div>
@@ -811,9 +823,9 @@
               <h4 class="font-bold text-[13px] sm:text-[15px] text-white leading-tight">
                 <span class="lang-uk">Пиво в асортименті</span><span class="lang-bg">Бира асортимент</span>
               </h4>
-              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1">Beer selection</div>
+              <div class="text-[10px] sm:text-xs text-gray-400 font-medium mt-1"><span class="lang-uk">Різні сорти</span><span class="lang-bg">Различни марки</span></div>
             </div>
-            <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">2–5€</span>
+            <span class="menu-price px-2 py-1 rounded-lg font-black text-sm sm:text-base absolute top-1/2 -translate-y-1/2 right-3">2-5€</span>
           </div>
         </div>
       </div>
@@ -956,7 +968,7 @@
   </div>
 
   <div class="max-w-6xl mx-auto mt-16 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-    <p>© 2026 Shaurmama Sunny Beach. All rights reserved.</p>
+    <p><span class="lang-uk">© 2026 Shaurmama Sunny Beach. Усі права захищені.</span><span class="lang-bg">© 2026 Shaurmama Sunny Beach. Всички права запазени.</span></p>
     <div class="flex gap-5">
       <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="hover:text-accent transition-colors">
         <i data-lucide="instagram" class="w-6 h-6"></i>
@@ -987,7 +999,8 @@
           <p class="text-sm text-gray-500 lang-bg modal-hint-drink" style="display:none">Напитка без добавки — потвърдете поръчката в WhatsApp.</p>
           <div class="text-accent font-black text-lg mt-2"><span id="modal-total-display" class="modal-price">0€</span></div>
         </div>
-        <button type="button" id="modal-close-btn" class="text-gray-400 hover:text-white bg-white/5 rounded-full p-2 transition-colors shrink-0" aria-label="Закрити">
+        <button type="button" id="modal-close-btn" class="text-gray-400 hover:text-white bg-white/5 rounded-full p-2 transition-colors shrink-0">
+          <span class="sr-only lang-uk">Закрити</span><span class="sr-only lang-bg">Затвори</span>
           <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
         </button>
       </div>
@@ -997,10 +1010,10 @@
         
         <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
           <div class="flex items-center gap-3">
-            <input type="checkbox" id="opt-cheese" data-price="0.5" class="modal-opt w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
+            <input type="checkbox" id="opt-cheese" data-price="1" class="modal-opt w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
             <span class="text-sm font-medium text-white"><span class="lang-uk">Екстра сир</span><span class="lang-bg">Екстра сирене</span></span>
           </div>
-          <span class="text-xs font-bold text-accent">+0.5€</span>
+          <span class="text-xs font-bold text-accent">+1€</span>
         </label>
         
         <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
@@ -1128,6 +1141,7 @@
     }
 
     document.dispatchEvent(new CustomEvent('shaurmama:langchange', { detail: { lang } }));
+    updateWaLinkForModal();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -1135,6 +1149,8 @@
       const saved = localStorage.getItem(LANG_STORAGE_KEY);
       if (saved === 'uk' || saved === 'bg') setLang(saved, false);
     } catch (e) {}
+
+    updateWaLinkForModal();
 
     const navBtn = document.getElementById('nav-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -1228,26 +1244,13 @@
 
   function updateWaLinkForModal() {
     if (!modalWaOrder) return;
-    const ukTitle = modalTitleUk ? modalTitleUk.textContent.trim() : '';
-    const bgTitle = modalTitleBg ? modalTitleBg.textContent.trim() : '';
     const lang = document.documentElement.lang === 'bg' ? 'bg' : 'uk';
-    const dishName = lang === 'bg' ? bgTitle : ukTitle;
-    const priceShown = modalTotalDisplay ? modalTotalDisplay.textContent.trim() : '';
-    let priceNote = '';
-    if (priceShown && /[–\-].*€/.test(priceShown)) {
-      priceNote = lang === 'bg' ? ' (цената зависи от вида бира)' : ' (ціна залежить від сорту пива)';
-    }
-    const extrasDesc = [];
-    document.querySelectorAll('.modal-opt:checked').forEach((el) => {
-      const lab = el.closest('label');
-      const txt = lab ? lab.querySelector('.lang-' + lang);
-      if (txt && txt.offsetParent !== null) extrasDesc.push(txt.textContent.trim());
-    });
-    let msg =
+    const dishName =
       lang === 'bg'
-        ? `Здравейте! Искам да поръчам: ${dishName}${priceNote}${extrasDesc.length ? '. Добавки: ' + extrasDesc.join(', ') : ''}. Обща сума: ${priceShown}`
-        : `Вітаю! Хочу замовити: ${dishName}${priceNote}${extrasDesc.length ? '. Додатки: ' + extrasDesc.join(', ') : ''}. Разом: ${priceShown}`;
-    modalWaOrder.href = 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(msg);
+        ? (modalTitleBg ? modalTitleBg.textContent.trim() : '')
+        : (modalTitleUk ? modalTitleUk.textContent.trim() : '');
+    const encodedName = encodeURIComponent(dishName || ' ');
+    modalWaOrder.href = 'https://wa.me/' + WA_PHONE + '?text=Order:%20' + encodedName;
   }
 
   if (modalExtrasBlock) {
