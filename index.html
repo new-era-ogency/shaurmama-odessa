@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Легендарна одеська шаурма в Sunny Beach — Luxury Beach Dolphin. Меню, доставка через WhatsApp, відгуки гостей." />
+  <meta name="theme-color" content="#020813" />
+  <meta property="og:title" content="Одеса Шаурмама — Sunny Beach" />
+  <meta property="og:description" content="Одеська шаурма та барбекю на узбережжі Чорного моря в Болгарії." />
+  <meta property="og:type" content="website" />
   <title>Одеса Шаурмама — Sunny Beach, Bulgaria</title>
 
   <!-- Google Fonts -->
@@ -17,7 +22,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -182,42 +187,83 @@
       visibility: visible;
       transform: translateY(0) scale(1);
     }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+      paint-order: stroke fill;
+    }
+
+    #skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      z-index: 200;
+      padding: 0.75rem 1rem;
+      background: #005581;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 0 0 0.5rem 0;
+      transition: left 0.2s ease;
+    }
+    #skip-link:focus {
+      left: 0;
+      outline: 2px solid #D4AF37;
+      outline-offset: 2px;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body class="relative">
 
+<a id="skip-link" href="#hero">Перейти до основного вмісту</a>
+
 <div class="marine-pattern"></div>
 
 <!-- HEADER -->
-<nav class="nav-blur fixed top-0 left-0 right-0 z-50 transition-all">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 transition-all" aria-label="Головна навігація">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-2">
     <div class="hidden md:flex flex-1 items-center gap-4 text-sm font-semibold tracking-wide">
       <a href="#menu" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Меню</span><span class="lang-bg">Меню</span></a>
       <a href="#reviews" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Відгуки</span><span class="lang-bg">Отзиви</span></a>
       <a href="#footer" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Контакти</span><span class="lang-bg">Контакти</span></a>
     </div>
-    <div class="flex-1 flex justify-center">
-      <a href="#hero" class="flex items-center gap-3">
-        <i data-lucide="anchor" class="w-6 h-6 text-brand"></i>
-        <div class="font-mont font-900 text-xl tracking-tight text-white leading-none text-center">
+    <div class="flex-1 flex justify-center min-w-0">
+      <a href="#hero" class="flex items-center gap-3 shrink-0">
+        <i data-lucide="anchor" class="w-6 h-6 text-brand shrink-0" aria-hidden="true"></i>
+        <div class="font-mont font-black text-xl tracking-tight text-white leading-none text-center">
           ШАУРМАМА
           <div class="text-[0.6rem] tracking-[0.2em] text-accent uppercase font-medium mt-1">Sunny Beach</div>
         </div>
       </a>
     </div>
-    <div class="flex-1 flex justify-end items-center gap-4">
-      <a href="tel:+359882789795" class="hidden sm:flex items-center gap-2 text-white font-bold hover:text-brand transition-colors text-sm">
-        <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
+    <div class="flex-1 flex justify-end items-center gap-2 sm:gap-4">
+      <a href="tel:+359882789795" class="hidden sm:flex items-center gap-2 text-white font-bold hover:text-brand transition-colors text-sm whitespace-nowrap">
+        <i data-lucide="phone" class="w-4 h-4 text-brand shrink-0" aria-hidden="true"></i>
         +359 88 278 9795
       </a>
+      <button type="button" id="nav-menu-btn" class="md:hidden p-2 rounded-lg text-white border border-white/20 hover:bg-white/10 transition-colors" aria-expanded="false" aria-controls="mobile-menu" aria-label="Відкрити меню">
+        <i data-lucide="menu" class="w-6 h-6 nav-menu-open" aria-hidden="true"></i>
+        <i data-lucide="x" class="w-6 h-6 nav-menu-close hidden" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[rgba(2,12,20,0.98)] backdrop-blur-md" hidden>
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1 text-sm font-semibold tracking-wide">
+      <a href="#menu" class="text-gray-200 hover:text-accent py-3 border-b border-white/5 transition-colors"><span class="lang-uk">Меню</span><span class="lang-bg">Меню</span></a>
+      <a href="#reviews" class="text-gray-200 hover:text-accent py-3 border-b border-white/5 transition-colors"><span class="lang-uk">Відгуки</span><span class="lang-bg">Отзиви</span></a>
+      <a href="#footer" class="text-gray-200 hover:text-accent py-3 border-b border-white/5 transition-colors"><span class="lang-uk">Контакти</span><span class="lang-bg">Контакти</span></a>
+      <a href="tel:+359882789795" class="flex items-center gap-2 text-accent py-3 sm:hidden"><i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i> +359 88 278 9795</a>
     </div>
   </div>
 </nav>
 
 <!-- Fixed Language Switcher -->
-<div class="fixed top-4 right-4 z-[100] flex rounded-full overflow-hidden border border-white/20 text-xs font-bold bg-black/40 backdrop-blur-md shadow-lg">
-  <button onclick="setLang('uk')" id="btn-uk" class="lang-btn active px-4 py-2 transition-colors">UA</button>
-  <button onclick="setLang('bg')" id="btn-bg" class="lang-btn text-gray-400 hover:text-white px-4 py-2 transition-colors">BG</button>
+<div class="fixed top-[5.25rem] right-4 md:top-4 z-[100] flex rounded-full overflow-hidden border border-white/20 text-xs font-bold bg-black/40 backdrop-blur-md shadow-lg" role="group" aria-label="Мова сайту">
+  <button type="button" onclick="setLang('uk')" id="btn-uk" class="lang-btn active px-4 py-2 transition-colors" aria-pressed="true" lang="uk">UA</button>
+  <button type="button" onclick="setLang('bg')" id="btn-bg" class="lang-btn text-gray-400 hover:text-white px-4 py-2 transition-colors" aria-pressed="false" lang="bg">BG</button>
 </div>
 
 <!-- HERO SECTION -->
@@ -227,9 +273,10 @@
       <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
       Sunny Beach, Bulgaria
     </div>
-    <div id="status-badge" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="glass px-5 py-2 rounded-full inline-flex items-center gap-2 font-semibold text-xs tracking-wider uppercase transition-colors duration-500">
-      <div class="w-2.5 h-2.5 rounded-full bg-gray-500 animate-pulse"></div>
-      <span class="text-gray-300">Checking status...</span>
+    <div id="status-badge" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="glass px-5 py-2 rounded-full inline-flex items-center gap-2 font-semibold text-xs tracking-wider uppercase transition-colors duration-500 border border-white/10" role="status" aria-live="polite">
+      <span class="w-2.5 h-2.5 rounded-full bg-gray-500 animate-pulse shrink-0 status-dot" aria-hidden="true"></span>
+        <div class="lang-uk status-msg text-gray-300">Перевірка статусу...</div>
+        <div class="lang-bg status-msg text-gray-300">Проверка на статус...</div>
     </div>
   </div>
   <h1 data-aos="zoom-in" data-aos-delay="100" class="font-mont font-black text-white text-5xl md:text-7xl lg:text-8xl leading-tight max-w-5xl drop-shadow-2xl">
@@ -282,7 +329,7 @@
     <div class="grid md:grid-cols-2 gap-4">
       
       <!-- 1. Assorted -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg border-brand/40" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg border-brand/40" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold z-10">1</div>
           <img src="IMG_shaurme1.PNG" alt="Assorted" class="menu-img w-full h-full object-cover" />
@@ -301,7 +348,7 @@
       </div>
 
       <!-- 2. Classic -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">2</div>
           <img src="IMG_shaurma4.PNG" alt="Classic" class="menu-img w-full h-full object-cover" />
@@ -320,7 +367,7 @@
       </div>
 
       <!-- 3. 5 Cheeses -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">3</div>
           <img src="IMG_shaurma5.PNG" alt="5 Cheeses" class="menu-img w-full h-full object-cover" />
@@ -337,7 +384,7 @@
       </div>
 
       <!-- 4. Mexican -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-red-600 text-white text-xs flex items-center justify-center font-bold z-10">4</div>
           <img src="IMG_shaurma6.PNG" alt="Mexican" class="menu-img w-full h-full object-cover" />
@@ -354,7 +401,7 @@
       </div>
 
       <!-- 5. Vegan -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-green-600 text-white text-xs flex items-center justify-center font-bold z-10">5</div>
           <img src="IMG_shaurma7.PNG" alt="Vegan" class="menu-img w-full h-full object-cover" />
@@ -371,7 +418,7 @@
       </div>
 
       <!-- 6. Sweet -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">6</div>
           <img src="IMG_shaurma8.PNG" alt="Sweet" class="menu-img w-full h-full object-cover" />
@@ -388,7 +435,7 @@
       </div>
 
       <!-- 7. Fish Shawarma -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">7</div>
           <img src="IMG_shaurma3.PNG" alt="Fish" class="menu-img w-full h-full object-cover" />
@@ -407,7 +454,7 @@
       </div>
 
       <!-- 8. Pork Shawarma -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">8</div>
           <img src="IMG_porkShawerma.PNG" alt="Pork" class="menu-img w-full h-full object-cover" />
@@ -426,7 +473,7 @@
       </div>
 
       <!-- 9. Hawaii -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">9</div>
           <img src="IMG_gawaiskaia.JPG" alt="Hawaii" class="menu-img w-full h-full object-cover" />
@@ -443,7 +490,7 @@
       </div>
 
       <!-- 10. Author's -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg border-brand/40" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg border-brand/40" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-brand text-white text-xs flex items-center justify-center font-bold z-10">10</div>
           <img src="IMG_authors.PNG" alt="Chef" class="menu-img w-full h-full object-cover" />
@@ -460,7 +507,7 @@
       </div>
 
       <!-- 11. Suluguni -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
         <div class="w-1/3 sm:w-[140px] h-full overflow-hidden shrink-0 relative">
           <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-dark/80 text-white text-xs flex items-center justify-center font-bold z-10">11</div>
           <img src="IMG_suluguni.PNG" alt="Suluguni" class="menu-img w-full h-full object-cover" />
@@ -482,7 +529,7 @@
     <div class="mt-16 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
       <div class="flex items-center gap-3">
          <i data-lucide="drumstick" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">BBQ Section</h3>
+         <h3 class="text-3xl font-bold text-white tracking-wide uppercase"><span class="lang-uk">Барбекю</span><span class="lang-bg">Барбекю</span></h3>
          <span class="text-xs font-semibold text-gray-400 border border-gray-600 px-2 py-0.5 rounded-md ml-2 hidden sm:block">100g</span>
       </div>
       <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
@@ -490,7 +537,7 @@
     
     <div class="grid md:grid-cols-2 gap-4">
       <!-- 12. Pork Neck -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">12</div>
@@ -507,7 +554,7 @@
       </div>
 
       <!-- 13. Pork Ribs -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">13</div>
@@ -524,7 +571,7 @@
       </div>
 
       <!-- 14. Chicken Wings -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">14</div>
@@ -541,7 +588,7 @@
       </div>
 
       <!-- 15. Chicken Thigh -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">15</div>
@@ -571,7 +618,7 @@
 
     <div class="grid md:grid-cols-2 gap-4">
       <!-- 16. Mussels & Tsatsa -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">16</div>
@@ -588,7 +635,7 @@
       </div>
 
       <!-- 17. Shrimps -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">17</div>
@@ -605,7 +652,7 @@
       </div>
 
       <!-- 18. Pelmeni -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">18</div>
@@ -622,7 +669,7 @@
       </div>
 
       <!-- 19. Salad Shaurmama -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">19</div>
@@ -639,7 +686,7 @@
       </div>
 
       <!-- 20. Caprese -->
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
+      <div data-modal-mode="extras" class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
          <div class="flex items-center gap-4">
            <div class="relative w-16 sm:w-20 h-16 sm:h-20 shrink-0">
              <div class="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-dark/80 border border-white/10 text-white text-[10px] flex items-center justify-center font-bold z-10">20</div>
@@ -668,14 +715,15 @@
          <div class="hidden md:block h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
       </div>
       
-      <div class="menu-card glass rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-[0_0_40px_rgba(0,85,129,0.1)] border-brand/20">
+      <div data-modal-mode="simple" class="menu-card glass rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6 shadow-[0_0_40px_rgba(0,85,129,0.1)] border-brand/20">
          <div class="w-full sm:w-32 h-32 shrink-0 rounded-2xl overflow-hidden shadow-lg border border-white/5">
             <img src="IMG_shaurma8.PNG" class="w-full h-full object-cover" alt="Drinks">
          </div>
          <div class="flex-1 text-center sm:text-left">
             <div class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">0.5 / 1L</div>
-            <h4 class="font-bold text-white text-lg md:text-xl leading-relaxed max-w-xl text-gray-300">
-               Cola, Fanta, Sprite, <span class="lang-uk">Живчик</span><span class="lang-bg">Живчик</span>, <span class="lang-uk">Квас</span><span class="lang-bg">Квас</span>, <span class="lang-uk">Айран</span><span class="lang-bg">Айран</span>
+            <h4 class="font-bold text-lg md:text-xl leading-relaxed max-w-xl text-gray-300">
+               <span class="lang-uk">Cola, Fanta, Sprite, Живчик, Квас, Айран</span>
+               <span class="lang-bg">Cola, Fanta, Sprite, Живчик, Квас, Айран</span>
             </h4>
          </div>
          <div class="shrink-0 mt-4 sm:mt-0">
@@ -697,7 +745,7 @@
       <div class="text-center mb-12" data-aos="fade-up">
         <h2 class="font-black text-white text-3xl sm:text-4xl tracking-tight">
           <span class="lang-uk">Що кажуть наші гості</span>
-          <span class="lang-bg">Каквоказват нашите гости</span>
+          <span class="lang-bg">Какво казват нашите гости</span>
         </h2>
         <div class="flex justify-center flex-row gap-1 mt-4">
           <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
@@ -770,7 +818,7 @@
     <div data-aos="fade-right">
       <div class="flex items-center gap-3 mb-6">
         <i data-lucide="anchor" class="w-8 h-8 text-brand"></i>
-        <div class="font-mont font-900 text-3xl tracking-tight text-white leading-none">ШАУРМАМА</div>
+        <div class="font-mont font-black text-3xl tracking-tight text-white leading-none">ШАУРМАМА</div>
       </div>
       <div class="space-y-4">
         <div class="flex items-center gap-3 text-gray-300">
@@ -805,7 +853,7 @@
     </div>
     
     <div class="flex justify-center md:justify-end" data-aos="fade-left">
-       <div class="w-full max-w-sm h-64 glass rounded-3xl relative overflow-hidden flex items-center justify-center border-brand/20 shadow-[0_0_40px_rgba(0,85,129,0.2)] hover:border-brand/50 transition-colors group cursor-pointer" onclick="window.open('https://www.google.com/maps/place/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0+%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%D0%BC%D0%B0+%7C+Odessa+-+Shaurmama/@42.7097592,27.7308556,17z/data=!3m1!4b1!4m6!3m5!1s0x40a69f603771120b:0x3210bf9bb659e4d3!8m2!3d42.7097592!4d27.7308556!16s%2Fg%2F11xkr_mdr5!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D','_blank')">
+       <a href="https://www.google.com/maps/place/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0+%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%D0%BC%D0%B0+%7C+Odessa+-+Shaurmama/@42.7097592,27.7308556,17z/data=!3m1!4b1!4m6!3m5!1s0x40a69f603771120b:0x3210bf9bb659e4d3!8m2!3d42.7097592!4d27.7308556!16s%2Fg%2F11xkr_mdr5!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="w-full max-w-sm h-64 glass rounded-3xl relative overflow-hidden flex items-center justify-center border-brand/20 shadow-[0_0_40px_rgba(0,85,129,0.2)] hover:border-brand/50 transition-colors group cursor-pointer no-underline">
          <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#005581 2px, transparent 2px); background-size: 20px 20px;"></div>
          <div class="absolute inset-x-0 top-1/2 h-[1px] bg-brand/30"></div>
          <div class="absolute inset-y-0 left-1/2 w-[1px] bg-brand/30"></div>
@@ -814,15 +862,14 @@
                <i data-lucide="anchor" class="w-5 h-5 text-accent"></i>
             </div>
             <div class="bg-dark/80 px-3 py-1 rounded-full text-xs font-bold text-accent border border-white/10 mt-3 backdrop-blur-sm">
-              Open Maps
+              <span class="lang-uk">Відкрити карту</span><span class="lang-bg">Отвори картата</span>
             </div>
          </div>
-       </div>
-    </div>
+    </a>
   </div>
 
   <div class="max-w-6xl mx-auto mt-16 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-    <p>© 2024 Shaurmama Sunny Beach. All rights reserved.</p>
+    <p>© 2026 Shaurmama Sunny Beach. All rights reserved.</p>
     <div class="flex gap-5">
       <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="hover:text-accent transition-colors">
         <i data-lucide="instagram" class="w-6 h-6"></i>
@@ -838,52 +885,59 @@
 </footer>
 
 <!-- ORDER CUSTOMIZER MODAL -->
-<div id="order-modal" class="fixed inset-0 z-[110] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity opacity-0">
-  <div class="bg-[#020C14] border border-brand/30 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(0,85,129,0.3)] transform scale-95 transition-transform" id="order-modal-content">
+<div id="order-modal" class="fixed inset-0 z-[110] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity opacity-0" role="presentation" aria-hidden="true">
+  <div class="bg-[#020C14] border border-brand/30 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(0,85,129,0.3)] transform scale-95 transition-transform" id="order-modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-order-title" tabindex="-1">
     <div class="p-6">
-      <div class="flex justify-between items-start mb-4">
-        <div>
-          <h3 class="text-xl font-bold text-white mb-1">
+      <div class="flex justify-between items-start mb-4 gap-4">
+        <div class="min-w-0 flex-1">
+          <h3 id="modal-order-title" class="text-xl font-bold text-white mb-1">
             <span class="lang-uk modal-title-uk">Назва</span>
             <span class="lang-bg modal-title-bg">Име</span>
           </h3>
-          <div class="text-accent font-black text-lg modal-price">0€</div>
+          <p class="text-sm text-gray-500 lang-uk modal-hint">Шаурма та м’ясні позиції — додайте соус і оформіть у WhatsApp.</p>
+          <p class="text-sm text-gray-500 lang-bg modal-hint">Шаурма и месо — добавете сос и поръчайте в WhatsApp.</p>
+          <div class="text-accent font-black text-lg mt-2"><span id="modal-total-display" class="modal-price">0€</span></div>
         </div>
-        <button onclick="closeModal()" class="text-gray-400 hover:text-white bg-white/5 rounded-full p-2 transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
+        <button type="button" id="modal-close-btn" class="text-gray-400 hover:text-white bg-white/5 rounded-full p-2 transition-colors shrink-0" aria-label="Закрити">
+          <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
         </button>
       </div>
       
-      <div class="space-y-4 mb-6">
+      <div id="modal-extras-block" class="space-y-4 mb-6">
         <h4 class="text-sm font-semibold text-gray-300 uppercase tracking-wide"><span class="lang-uk">Додатки</span><span class="lang-bg">Добавки</span></h4>
         
         <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
           <div class="flex items-center gap-3">
-            <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
-            <span class="text-sm font-medium text-white"><span class="lang-uk">Екстра Сир</span><span class="lang-bg">Екстра Сирене</span></span>
+            <input type="checkbox" id="opt-cheese" data-price="0.5" class="modal-opt w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
+            <span class="text-sm font-medium text-white"><span class="lang-uk">Екстра сир</span><span class="lang-bg">Екстра сирене</span></span>
           </div>
           <span class="text-xs font-bold text-accent">+0.5€</span>
         </label>
         
         <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
           <div class="flex items-center gap-3">
-            <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
+            <input type="checkbox" id="opt-no-onion" data-price="0" class="modal-opt w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
             <span class="text-sm font-medium text-white"><span class="lang-uk">Без цибулі</span><span class="lang-bg">Без лук</span></span>
           </div>
         </label>
         
         <label class="flex items-center justify-between p-3 rounded-xl border border-white/5 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
           <div class="flex items-center gap-3">
-            <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
+            <input type="checkbox" id="opt-spicy" data-price="0.3" class="modal-opt w-5 h-5 rounded border-gray-600 text-brand focus:ring-brand accent-brand bg-dark">
             <span class="text-sm font-medium text-white"><span class="lang-uk">Гострий соус</span><span class="lang-bg">Лютив сос</span></span>
           </div>
           <span class="text-xs font-bold text-accent">+0.3€</span>
         </label>
       </div>
       
-      <button onclick="closeModal()" class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-[#004066] transition-colors shadow-lg shadow-brand/30">
-        <span class="lang-uk">Додати до замовлення</span><span class="lang-bg">Добави към поръчката</span>
-      </button>
+      <div class="flex flex-col gap-3">
+        <a id="modal-wa-order" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-[#004066] transition-colors shadow-lg shadow-brand/30 text-center">
+          <span class="lang-uk">Оформити в WhatsApp</span><span class="lang-bg">Поръчай в WhatsApp</span>
+        </a>
+        <button type="button" id="modal-dismiss-btn" class="w-full glass text-white font-medium py-3 rounded-xl hover:border-white/30 transition-colors border border-white/10">
+          <span class="lang-uk">Закрити</span><span class="lang-bg">Затвори</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -891,7 +945,7 @@
 <!-- FLOATING ACTION BUTTONS (Left Side) -->
 <div class="fixed bottom-6 left-5 z-[90] flex flex-col gap-3">
   <!-- Back to top -->
-  <button id="back-to-top" onclick="window.scrollTo(0,0)" class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 shadow-lg hover:bg-brand hover:border-brand transition-all">
+  <button type="button" id="back-to-top" class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 shadow-lg hover:bg-brand hover:border-brand transition-all" aria-label="Нагору">
     <i data-lucide="chevron-up" class="w-6 h-6"></i>
   </button>
   
@@ -906,7 +960,7 @@
   </a>
 
   <!-- Invite a Friend -->
-  <button onclick="inviteFriend()" class="group relative w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-[0_0_15px_rgba(139,92,246,0.4)] hover:scale-110 transition-transform">
+  <button type="button" onclick="inviteFriend()" class="group relative w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-[0_0_15px_rgba(139,92,246,0.4)] hover:scale-110 transition-transform" aria-label="Поділитися">
     <i data-lucide="share-2" class="w-5 h-5"></i>
     <span class="absolute left-14 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity border border-white/10 pointer-events-none">
       <span class="lang-uk">Запросити друга</span><span class="lang-bg">Покани приятел</span>
@@ -917,29 +971,112 @@
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
+  const LANG_STORAGE_KEY = 'shaurmama-lang';
+  const WA_PHONE = '359882789795';
+
   AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
   lucide.createIcons();
 
-  function setLang(lang) {
+  function refreshLucide(root) {
+    if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons(root || document.body);
+  }
+
+  function parseEuro(text) {
+    const m = String(text || '').replace(/\s/g, '').match(/([\d]+(?:[.,]\d+)?)/);
+    if (!m) return 0;
+    return parseFloat(m[1].replace(',', '.')) || 0;
+  }
+
+  function formatEuro(n) {
+    const v = Math.round(n * 100) / 100;
+    const numStr = String(parseFloat(v.toFixed(2)));
+    return numStr + '€';
+  }
+
+  function setLang(lang, persist) {
     document.documentElement.lang = lang;
     const btnUk = document.getElementById('btn-uk');
     const btnBg = document.getElementById('btn-bg');
-    
-    if(lang === 'uk') {
+
+    if (lang === 'uk') {
       btnUk.classList.add('active');
       btnUk.classList.remove('text-gray-400', 'hover:text-white');
+      btnUk.setAttribute('aria-pressed', 'true');
       btnBg.classList.remove('active');
       btnBg.classList.add('text-gray-400', 'hover:text-white');
+      btnBg.setAttribute('aria-pressed', 'false');
     } else {
       btnBg.classList.add('active');
       btnBg.classList.remove('text-gray-400', 'hover:text-white');
+      btnBg.setAttribute('aria-pressed', 'true');
       btnUk.classList.remove('active');
       btnUk.classList.add('text-gray-400', 'hover:text-white');
+      btnUk.setAttribute('aria-pressed', 'false');
     }
+
+    if (persist !== false) {
+      try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    document.dispatchEvent(new CustomEvent('shaurmama:langchange', { detail: { lang } }));
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const saved = localStorage.getItem(LANG_STORAGE_KEY);
+      if (saved === 'uk' || saved === 'bg') setLang(saved, false);
+    } catch (e) {}
+
+    const navBtn = document.getElementById('nav-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOpenIcon = document.querySelector('.nav-menu-open');
+    const menuCloseIcon = document.querySelector('.nav-menu-close');
+
+    function closeMobileMenu() {
+      if (!mobileMenu || !navBtn) return;
+      mobileMenu.classList.add('hidden');
+      mobileMenu.hidden = true;
+      navBtn.setAttribute('aria-expanded', 'false');
+      navBtn.setAttribute('aria-label', document.documentElement.lang === 'bg' ? 'Отвори меню' : 'Відкрити меню');
+      if (menuOpenIcon) menuOpenIcon.classList.remove('hidden');
+      if (menuCloseIcon) menuCloseIcon.classList.add('hidden');
+    }
+
+    function openMobileMenu() {
+      if (!mobileMenu || !navBtn) return;
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.hidden = false;
+      navBtn.setAttribute('aria-expanded', 'true');
+      navBtn.setAttribute('aria-label', document.documentElement.lang === 'bg' ? 'Затвори меню' : 'Закрити меню');
+      if (menuOpenIcon) menuOpenIcon.classList.add('hidden');
+      if (menuCloseIcon) menuCloseIcon.classList.remove('hidden');
+      refreshLucide(mobileMenu);
+    }
+
+    if (navBtn && mobileMenu) {
+      navBtn.addEventListener('click', () => {
+        if (mobileMenu.hidden) openMobileMenu(); else closeMobileMenu();
+      });
+      mobileMenu.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', closeMobileMenu);
+      });
+    }
+
+    document.querySelectorAll('img').forEach((img) => {
+      img.classList.add('skeleton');
+      if (img.complete) img.classList.remove('skeleton');
+      else img.addEventListener('load', () => img.classList.remove('skeleton'));
+    });
+
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  });
 
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
+    if (!nav) return;
     if (window.scrollY > 40) {
       nav.style.background = 'rgba(2, 12, 20, 0.98)';
       nav.style.boxShadow = '0 10px 30px -10px rgba(0, 0, 0, 0.5)';
@@ -950,118 +1087,223 @@
     }
   });
 
-  // Skeleton Loader Logic
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('img').forEach(img => {
-      img.classList.add('skeleton');
-      if(img.complete) {
-        img.classList.remove('skeleton');
-      } else {
-        img.addEventListener('load', () => img.classList.remove('skeleton'));
-      }
-    });
-  });
-
-  // Interactive Order Customizer (Modal)
   const modal = document.getElementById('order-modal');
   const modalContent = document.getElementById('order-modal-content');
   const modalTitleUk = document.querySelector('.modal-title-uk');
   const modalTitleBg = document.querySelector('.modal-title-bg');
-  const modalPrice = document.querySelector('.modal-price');
+  const modalTotalDisplay = document.getElementById('modal-total-display');
+  const modalExtrasBlock = document.getElementById('modal-extras-block');
+  const modalWaOrder = document.getElementById('modal-wa-order');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalDismissBtn = document.getElementById('modal-dismiss-btn');
 
-  document.querySelectorAll('.menu-card').forEach(card => {
-    card.classList.add('cursor-pointer');
-    card.addEventListener('click', () => {
-      const ukText = card.querySelector('.lang-uk')?.innerText || '';
-      const bgText = card.querySelector('.lang-bg')?.innerText || '';
-      const priceText = card.querySelector('.menu-price')?.innerText || '';
-      
-      if(modalTitleUk) modalTitleUk.innerText = ukText;
-      if(modalTitleBg) modalTitleBg.innerText = bgText;
-      if(modalPrice) modalPrice.innerText = priceText;
-      
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
-      setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modalContent.classList.remove('scale-95');
-      }, 10);
+  let modalBasePrice = 0;
+  let modalPreviousFocus = null;
+
+  function resetModalOptions() {
+    document.querySelectorAll('.modal-opt').forEach((el) => { el.checked = false; });
+  }
+
+  function extrasTotal() {
+    let sum = 0;
+    document.querySelectorAll('.modal-opt:checked').forEach((el) => {
+      sum += parseEuro(el.dataset.price || '0');
     });
-  });
+    return sum;
+  }
+
+  function updateModalTotalPrice() {
+    const total = modalBasePrice + extrasTotal();
+    if (modalTotalDisplay) modalTotalDisplay.textContent = formatEuro(total);
+  }
+
+  function updateWaLinkForModal() {
+    if (!modalWaOrder) return;
+    const ukTitle = modalTitleUk ? modalTitleUk.textContent.trim() : '';
+    const bgTitle = modalTitleBg ? modalTitleBg.textContent.trim() : '';
+    const lang = document.documentElement.lang === 'bg' ? 'bg' : 'uk';
+    const dishName = lang === 'bg' ? bgTitle : ukTitle;
+    const extrasDesc = [];
+    document.querySelectorAll('.modal-opt:checked').forEach((el) => {
+      const lab = el.closest('label');
+      const txt = lab ? lab.querySelector('.lang-' + lang);
+      if (txt && txt.offsetParent !== null) extrasDesc.push(txt.textContent.trim());
+    });
+    let msg =
+      lang === 'bg'
+        ? `Здравейте! Искам да поръчам: ${dishName}${extrasDesc.length ? '. Добавки: ' + extrasDesc.join(', ') : ''}. Обща сума: ${modalTotalDisplay ? modalTotalDisplay.textContent : ''}`
+        : `Вітаю! Хочу замовити: ${dishName}${extrasDesc.length ? '. Додатки: ' + extrasDesc.join(', ') : ''}. Разом: ${modalTotalDisplay ? modalTotalDisplay.textContent : ''}`;
+    modalWaOrder.href = 'https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(msg);
+  }
+
+  if (modalExtrasBlock) {
+    modalExtrasBlock.addEventListener('change', (e) => {
+      if (e.target.classList.contains('modal-opt')) {
+        updateModalTotalPrice();
+        updateWaLinkForModal();
+      }
+    });
+  }
+
+  function openModal(card) {
+    if (!modal || !modalContent) return;
+
+    const ukEl = card.querySelector('h4 .lang-uk') || card.querySelector('.lang-uk');
+    const bgEl = card.querySelector('h4 .lang-bg') || card.querySelector('.lang-bg');
+    const priceEl = card.querySelector('.menu-price');
+
+    const ukText = ukEl ? ukEl.innerText.trim() : '';
+    const bgText = bgEl ? bgEl.innerText.trim() : '';
+    const priceText = priceEl ? priceEl.innerText.trim() : '';
+
+    modalBasePrice = parseEuro(priceText);
+
+    if (modalTitleUk) modalTitleUk.textContent = ukText;
+    if (modalTitleBg) modalTitleBg.textContent = bgText;
+
+    const mode = card.dataset.modalMode || 'extras';
+    resetModalOptions();
+    if (modalExtrasBlock) {
+      modalExtrasBlock.hidden = mode === 'simple';
+      modalExtrasBlock.setAttribute('aria-hidden', mode === 'simple' ? 'true' : 'false');
+    }
+    document.querySelectorAll('.modal-hint').forEach((el) => {
+      el.style.display = mode === 'simple' ? 'none' : '';
+    });
+
+    updateModalTotalPrice();
+    updateWaLinkForModal();
+
+    modalPreviousFocus = document.activeElement;
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+
+    requestAnimationFrame(() => {
+      modal.classList.remove('opacity-0');
+      modalContent.classList.remove('scale-95');
+      if (modalCloseBtn) modalCloseBtn.focus();
+    });
+
+    refreshLucide(modalContent);
+  }
 
   function closeModal() {
+    if (!modal || !modalContent) return;
     modal.classList.add('opacity-0');
     modalContent.classList.add('scale-95');
+    document.body.classList.remove('modal-open');
+    modal.setAttribute('aria-hidden', 'true');
+
     setTimeout(() => {
       modal.classList.add('hidden');
       modal.style.display = 'none';
+      if (modalPreviousFocus && typeof modalPreviousFocus.focus === 'function') {
+        modalPreviousFocus.focus();
+      }
+      modalPreviousFocus = null;
     }, 300);
   }
-  
-  if(modal) {
+
+  document.querySelectorAll('.menu-card').forEach((card) => {
+    card.classList.add('cursor-pointer');
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalDismissBtn) modalDismissBtn.addEventListener('click', closeModal);
+
+  if (modal) {
     modal.addEventListener('click', (e) => {
-      if(e.target === modal) closeModal();
+      if (e.target === modal) closeModal();
     });
   }
 
-  // Back to Top Button
-  const backToTop = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    if(backToTop) {
-      if(window.scrollY > 500) {
-        backToTop.classList.add('show');
-      } else {
-        backToTop.classList.remove('show');
-      }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden') && modal.style.display !== 'none') {
+      closeModal();
     }
   });
 
-  // Invite a Friend Logic
+  const backToTopEl = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (backToTopEl) {
+      if (window.scrollY > 500) backToTopEl.classList.add('show');
+      else backToTopEl.classList.remove('show');
+    }
+  });
+
   function inviteFriend() {
-    const text = encodeURIComponent(`Look at this Shawarma place in Sunny Beach! Let's go: `);
-    const url = encodeURIComponent(window.location.href);
-    
-    if(navigator.share) {
-      navigator.share({
-        title: 'Одеса Шаурмама',
-        text: "Look at this Shawarma place in Sunny Beach! Let's go:",
-        url: window.location.href
-      }).catch(console.error);
+    const lang = document.documentElement.lang === 'bg' ? 'bg' : 'uk';
+    const text =
+      lang === 'bg'
+        ? 'Виж този дюнер в Sunny Beach — хайде заедно!'
+        : 'Подивись цю шаурму в Sunny Beach — підемо разом!';
+    const title = lang === 'bg' ? 'Одеса Шаурмама — Sunny Beach' : 'Одеса Шаурмама — Sunny Beach';
+
+    if (navigator.share) {
+      navigator.share({ title, text, url: window.location.href }).catch(() => {});
     } else {
-      window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
+      window.open(
+        'https://t.me/share/url?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(text),
+        '_blank'
+      );
     }
   }
 
-  // Live Operating Hours Widget (Sofia Time)
   function updateOperatingHours() {
     const badge = document.getElementById('status-badge');
-    if(!badge) return;
-    
+    if (!badge) return;
+
+    const dot = badge.querySelector('.status-dot');
+    const ukMsg = badge.querySelector('.lang-uk.status-msg');
+    const bgMsg = badge.querySelector('.lang-bg.status-msg');
+
     const now = new Date();
     const options = { timeZone: 'Europe/Sofia', hour: 'numeric', hour12: false };
     const formatter = new Intl.DateTimeFormat('en-US', options);
     const parts = formatter.formatToParts(now);
-    const hourPart = parts.find(p => p.type === 'hour');
+    const hourPart = parts.find((p) => p.type === 'hour');
     const hour = hourPart ? parseInt(hourPart.value, 10) : now.getHours();
-    
+
     const isOpen = hour >= 11 && hour < 21;
-    
-    if(isOpen) {
-      badge.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-                         <span class="text-green-400">Open Now - We are waiting for you!</span>`;
+
+    if (dot) {
+      if (isOpen) {
+        dot.className =
+          'w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shrink-0 status-dot shadow-[0_0_10px_rgba(34,197,94,0.8)]';
+      } else {
+        dot.className =
+          'w-2.5 h-2.5 rounded-full bg-red-500 shrink-0 status-dot shadow-[0_0_10px_rgba(239,68,68,0.8)]';
+      }
+    }
+
+    if (ukMsg) {
+      ukMsg.textContent = isOpen ? 'Відчинено — чекаємо на вас!' : 'Зачинено — відкриття о 11:00';
+      ukMsg.className = 'lang-uk status-msg ' + (isOpen ? 'text-green-400' : 'text-red-400');
+    }
+    if (bgMsg) {
+      bgMsg.textContent = isOpen ? 'Отворено — очакваме ви!' : 'Затворено — отваряме в 11:00';
+      bgMsg.className = 'lang-bg status-msg ' + (isOpen ? 'text-green-400' : 'text-red-400');
+    }
+
+    if (isOpen) {
       badge.classList.add('border-green-500/30', 'shadow-[0_0_15px_rgba(34,197,94,0.15)]');
       badge.classList.remove('border-red-500/30', 'border-accent/30', 'shadow-[0_0_20px_rgba(212,175,55,0.2)]');
     } else {
-      badge.innerHTML = `<div class="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-                         <span class="text-red-400">Closed - Opening at 11:00 AM</span>`;
       badge.classList.add('border-red-500/30');
-      badge.classList.remove('border-green-500/30', 'border-accent/30', 'shadow-[0_0_20px_rgba(212,175,55,0.2)]', 'shadow-[0_0_15px_rgba(34,197,94,0.15)]');
+      badge.classList.remove(
+        'border-green-500/30',
+        'border-accent/30',
+        'shadow-[0_0_20px_rgba(212,175,55,0.2)]',
+        'shadow-[0_0_15px_rgba(34,197,94,0.15)]'
+      );
     }
   }
-  
+
   updateOperatingHours();
   setInterval(updateOperatingHours, 60000);
-
 </script>
 </body>
 </html>
