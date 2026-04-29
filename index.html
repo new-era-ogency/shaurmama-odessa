@@ -35,11 +35,12 @@
             'float-slow': 'float 6s ease-in-out infinite',
             'pulse-brand': 'pulse-brand 2s infinite',
             'pulse-soft': 'pulse-soft 3s infinite',
+            'pulse-social': 'pulse-social 2s infinite',
           },
           keyframes: {
             float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-8px)' },
+              '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(5deg)' },
             },
             'pulse-brand': {
               '0%, 100%': { boxShadow: '0 0 0 0 rgba(0, 85, 129, 0.6)' },
@@ -47,7 +48,11 @@
             },
             'pulse-soft': {
               '0%, 100%': { transform: 'scale(1)', opacity: '1' },
-              '50%': { transform: 'scale(1.05)', opacity: '0.8' },
+              '50%': { transform: 'scale(1.08)', opacity: '0.85' },
+            },
+            'pulse-social': {
+              '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(255, 255, 255, 0.4)' },
+              '50%': { transform: 'scale(1.15)', boxShadow: '0 0 25px 15px rgba(255, 255, 255, 0)' },
             }
           }
         }
@@ -65,20 +70,21 @@
       overflow-x: hidden;
     }
 
+    /* PREMIUM BACKGROUND DESIGN */
     body::before {
       content: '';
       position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
 
     .marine-pattern {
-      position: absolute;
+      position: fixed;
       inset: 0;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15 A5 5 0 1 0 50 25 A5 5 0 1 0 50 15 Z M48 25 L48 75 L35 75 C35 85 65 85 65 75 L52 75 L52 25 Z M35 70 L30 70 L40 85 L50 70 L45 70 A10 10 0 0 1 35 70 Z C20 50 80 50 50 15' fill='%23ffffff'/%3E%3C/svg%3E");
-      background-size: 150px 150px;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15 A5 5 0 1 0 50 25 A5 5 0 1 0 50 15 Z M48 25 L48 75 L35 75 C35 85 65 85 65 75 L52 75 L52 25 Z' fill='%23ffffff'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23ffffff'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
       pointer-events: none;
       z-index: 0;
     }
@@ -93,7 +99,7 @@
     .hero-bg {
       background-image: 
         linear-gradient(to bottom, rgba(2, 12, 20, 0.4) 0%, rgba(2, 12, 20, 0.8) 60%, rgba(2, 12, 20, 1) 100%),
-        url('IMG_shaurma4.PNG');
+        url('IMG_classicShawerma.PNG');
       background-size: cover;
       background-position: center;
     }
@@ -107,16 +113,16 @@
     }
     
     .menu-card {
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
     }
     .menu-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px);
       border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: 0 12px 30px rgba(0, 85, 129, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 85, 129, 0.4);
     }
     .menu-img {
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
     .menu-card:hover .menu-img {
       transform: scale(1.1);
@@ -138,7 +144,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: #005581;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       background: #020813;
       padding: 0 10px;
     }
@@ -162,58 +168,75 @@
       background: rgba(212, 175, 55, 0.1);
       border: 1px solid rgba(212, 175, 55, 0.3);
       color: #D4AF37;
+      backdrop-filter: blur(4px);
     }
 
     .floating-socials {
       position: fixed;
-      right: 20px;
-      bottom: 80px;
+      right: 24px;
+      bottom: 24px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       z-index: 100;
     }
     .float-btn {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .float-btn:hover {
-      transform: translateY(-5px) scale(1.1);
     }
     .float-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
     .float-telegram { background-color: #0088cc; }
+    
+    .pulse-animation {
+      animation: pulse-social 2s infinite;
+    }
+    
+    .bg-icon {
+      position: fixed;
+      opacity: 0.03;
+      color: white;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.5px);
+    }
   </style>
 </head>
 <body class="relative">
 
 <div class="marine-pattern"></div>
 
+<!-- Background Decorative Icons -->
+<i data-lucide="utensils" class="bg-icon w-24 h-24 top-[15%] left-[5%] animate-float-slow"></i>
+<i data-lucide="flame" class="bg-icon w-32 h-32 top-[45%] right-[8%] animate-float-slow" style="animation-delay: -2s"></i>
+<i data-lucide="anchor" class="bg-icon w-20 h-20 bottom-[10%] left-[12%] animate-float-slow" style="animation-delay: -4s"></i>
+<i data-lucide="waves" class="bg-icon w-28 h-28 top-[75%] right-[15%] animate-float-slow" style="animation-delay: -1s"></i>
+
 <!-- HEADER -->
 <nav class="nav-blur fixed top-0 left-0 right-0 z-50 transition-all">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-    <div class="hidden md:flex flex-1 items-center gap-4 text-sm font-semibold tracking-wide">
+    <div class="hidden md:flex flex-1 items-center gap-6 text-sm font-bold tracking-widest uppercase">
       <a href="#menu" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Меню</span><span class="lang-bg">Меню</span></a>
       <a href="#reviews" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Відгуки</span><span class="lang-bg">Отзиви</span></a>
       <a href="#footer" class="text-gray-300 hover:text-accent transition-colors"><span class="lang-uk">Контакти</span><span class="lang-bg">Контакти</span></a>
     </div>
     <div class="flex-1 flex justify-center">
       <a href="#hero" class="flex items-center gap-3">
-        <i data-lucide="anchor" class="w-6 h-6 text-brand"></i>
-        <div class="font-mont font-900 text-xl tracking-tight text-white leading-none text-center">
+        <i data-lucide="anchor" class="w-8 h-8 text-brand"></i>
+        <div class="font-mont font-900 text-2xl tracking-tighter text-white leading-none text-center">
           ШАУРМАМА
-          <div class="text-[0.6rem] tracking-[0.2em] text-accent uppercase font-medium mt-1">Sunny Beach</div>
+          <div class="text-[0.6rem] tracking-[0.3em] text-accent uppercase font-semibold mt-1">Sunny Beach</div>
         </div>
       </a>
     </div>
     <div class="flex-1 flex justify-end items-center gap-4">
-      <a href="tel:+359882789795" class="hidden sm:flex items-center gap-2 text-white font-bold hover:text-brand transition-colors text-sm">
+      <a href="tel:+359882789795" class="hidden sm:flex items-center gap-2 text-white font-black hover:text-brand transition-colors text-sm">
         <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
         +359 88 278 9795
       </a>
@@ -221,19 +244,19 @@
   </div>
 </nav>
 
-<!-- Fixed Language Switcher -->
-<div class="fixed top-4 right-4 z-[100] flex rounded-full overflow-hidden border border-white/20 text-xs font-bold bg-black/40 backdrop-blur-md shadow-lg">
-  <button onclick="setLang('uk')" id="btn-uk" class="lang-btn active px-4 py-2 transition-colors">UA</button>
-  <button onclick="setLang('bg')" id="btn-bg" class="lang-btn text-gray-400 hover:text-white px-4 py-2 transition-colors">BG</button>
+<!-- Language Switcher -->
+<div class="fixed top-4 right-4 z-[100] flex rounded-full overflow-hidden border border-white/20 text-xs font-black bg-black/40 backdrop-blur-md shadow-lg">
+  <button onclick="setLang('uk')" id="btn-uk" class="lang-btn active px-4 py-3 transition-colors">UA</button>
+  <button onclick="setLang('bg')" id="btn-bg" class="lang-btn text-gray-400 hover:text-white px-4 py-3 transition-colors">BG</button>
 </div>
 
 <!-- FLOATING SOCIALS -->
 <div class="floating-socials">
-  <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="float-btn float-instagram animate-pulse-soft">
-    <i data-lucide="instagram" class="w-6 h-6"></i>
+  <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="float-btn float-instagram pulse-animation">
+    <i data-lucide="instagram" class="w-8 h-8"></i>
   </a>
-  <a href="https://t.me/odessa_shaurmama" target="_blank" class="float-btn float-telegram animate-pulse-soft">
-    <i data-lucide="send" class="w-6 h-6"></i>
+  <a href="https://t.me/odessa_shaurmama" target="_blank" class="float-btn float-telegram pulse-animation">
+    <i data-lucide="send" class="w-8 h-8"></i>
   </a>
   <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-brand/80 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 shadow-lg hover:bg-brand transition-all opacity-0 pointer-events-none">
     <i data-lucide="chevron-up" class="w-6 h-6"></i>
@@ -242,469 +265,452 @@
 
 <!-- HERO SECTION -->
 <section id="hero" class="hero-bg min-h-[100vh] flex flex-col items-center justify-center text-center px-4 pt-20 relative z-10">
-  <div class="flex flex-col sm:flex-row gap-3 mb-6 items-center">
-    <div data-aos="fade-down" data-aos-duration="1000" class="glass px-5 py-2 rounded-full inline-flex items-center gap-2 border-accent/30 text-accent font-semibold text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-      <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+  <div class="flex flex-col sm:flex-row gap-4 mb-8 items-center">
+    <div data-aos="fade-down" data-aos-duration="1200" class="glass px-6 py-2.5 rounded-full inline-flex items-center gap-2 border-accent/30 text-accent font-bold text-xs tracking-widest uppercase shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+      <i data-lucide="map-pin" class="w-4 h-4"></i>
       Sunny Beach, Bulgaria
     </div>
-    <div id="status-badge" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="glass px-5 py-2 rounded-full inline-flex items-center gap-2 font-semibold text-xs tracking-wider uppercase transition-colors duration-500">
-      <div class="w-2.5 h-2.5 rounded-full bg-gray-500 animate-pulse"></div>
+    <div id="status-badge" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200" class="glass px-6 py-2.5 rounded-full inline-flex items-center gap-2 font-bold text-xs tracking-widest uppercase transition-colors duration-500">
+      <div class="w-3 h-3 rounded-full bg-gray-500 animate-pulse"></div>
       <span class="text-gray-300 lang-uk">Перевірка статусу...</span>
       <span class="text-gray-300 lang-bg">Проверка на статус...</span>
     </div>
   </div>
-  <h1 data-aos="zoom-in" data-aos-delay="100" class="font-mont font-black text-white text-5xl md:text-7xl lg:text-8xl leading-tight max-w-5xl drop-shadow-2xl">
-    <span class="lang-uk">Легендарна Одеська<br><span class="text-brand text-stroke drop-shadow-[0_0_35px_rgba(0,85,129,0.8)]">Шаурма</span><br>в Болгарії</span>
-    <span class="lang-bg">Легендарен Одески<br><span class="text-brand drop-shadow-[0_0_35px_rgba(0,85,129,0.8)]">Дюнер</span><br>в България</span>
+  <h1 data-aos="zoom-in" data-aos-duration="1000" class="font-mont font-black text-white text-6xl md:text-8xl lg:text-9xl leading-[0.85] max-w-6xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+    <span class="lang-uk">ЛЕГЕНДАРНА<br><span class="text-brand drop-shadow-[0_0_40px_rgba(0,85,129,0.7)]">ШАУРМА</span><br>В БОЛГАРІЇ</span>
+    <span class="lang-bg">ЛЕГЕНДАРЕН<br><span class="text-brand drop-shadow-[0_0_40px_rgba(0,85,129,0.7)]">ДЮНЕР</span><br>В БЪЛГАРИЯ</span>
   </h1>
-  <p data-aos="fade-up" data-aos-delay="300" class="font-medium text-lg md:text-xl text-gray-300 mt-6 max-w-2xl px-4">
-    <span class="lang-uk">Справжній смак з берегів Чорного моря. Лаваш, авторські соуси та свіжі інгредієнти. 🌊</span>
-    <span class="lang-bg">Истинският вкус от бреговете на Черно море. Лаваш, авторски сосове и пресни съставки. 🌊</span>
+  <p data-aos="fade-up" data-aos-delay="400" class="font-bold text-lg md:text-2xl text-gray-200 mt-10 max-w-3xl px-4 leading-relaxed">
+    <span class="lang-uk">Справжній одеський смак у центрі Сонячного берега. Авторські соуси та найсвіжіше м'ясо. 🌊</span>
+    <span class="lang-bg">Истинският одески вкус в центъра на Слънчев бряг. Авторски сосове и най-прясното месо. 🌊</span>
   </p>
-  <div data-aos="fade-up" data-aos-delay="500" class="flex flex-col sm:flex-row gap-5 mt-10">
-    <a href="https://wa.me/359882789795" target="_blank" class="animate-pulse-brand bg-brand text-white font-bold text-base px-8 py-4 rounded-full flex items-center justify-center gap-3 hover:bg-[#004066] transition-all shadow-lg shadow-brand/50 border border-blue-400/30">
-      <i data-lucide="shopping-bag" class="w-5 h-5 text-accent"></i>
-      <span class="lang-uk">Замовити доставку</span>
-      <span class="lang-bg">Поръчай доставка</span>
+  <div data-aos="fade-up" data-aos-delay="600" class="flex flex-col sm:flex-row gap-6 mt-12">
+    <a href="https://wa.me/359882789795" target="_blank" class="animate-pulse-brand bg-brand text-white font-black text-lg px-10 py-5 rounded-2xl flex items-center justify-center gap-4 hover:bg-[#004066] transition-all shadow-2xl shadow-brand/40 border border-blue-400/20">
+      <i data-lucide="shopping-bag" class="w-6 h-6 text-accent"></i>
+      <span class="lang-uk">ЗАМОВИТИ</span>
+      <span class="lang-bg">ПОРЪЧАЙ</span>
     </a>
-    <a href="#menu" class="glass text-white font-medium text-base px-8 py-4 rounded-full flex items-center justify-center gap-3 hover:border-white/40 transition-all group">
-      <span class="lang-uk">Дивитись меню</span>
-      <span class="lang-bg">Виж менюто</span>
-      <i data-lucide="arrow-down" class="w-4 h-4 text-gray-400 group-hover:translate-y-1 transition-transform"></i>
+    <a href="#menu" class="glass text-white font-bold text-lg px-10 py-5 rounded-2xl flex items-center justify-center gap-4 hover:border-white/40 transition-all group">
+      <span class="lang-uk">МЕНЮ</span>
+      <span class="lang-bg">МЕНЮ</span>
+      <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-2 transition-transform"></i>
     </a>
   </div>
 </section>
 
 <!-- MENU SECTION -->
-<section id="menu" class="py-24 px-4 relative z-10">
-  <div class="max-w-6xl mx-auto">
+<section id="menu" class="py-32 px-4 relative z-10">
+  <div class="max-w-7xl mx-auto">
     
-    <div class="text-center mb-16" data-aos="fade-up">
-      <div class="marine-divider mb-6"></div>
-      <h2 class="font-black text-white text-4xl sm:text-5xl tracking-tight uppercase">
+    <div class="text-center mb-24" data-aos="fade-up">
+      <div class="marine-divider mb-8"></div>
+      <h2 class="font-black text-white text-5xl md:text-7xl tracking-tighter uppercase mb-4">
         <span class="lang-uk">Наше Меню</span>
         <span class="lang-bg">Меню</span>
       </h2>
-      <p class="text-accent mt-3 font-semibold uppercase tracking-widest text-sm">Quality from the Black Sea</p>
+      <p class="text-accent font-black uppercase tracking-[0.4em] text-sm">Odessa Quality — Sunny Beach Spirit</p>
     </div>
 
-    <!-- SHAWARMA -->
-    <div class="mt-12 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
-      <div class="flex items-center gap-3">
-         <i data-lucide="flame" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">
+    <!-- SHAWARMA SECTION -->
+    <div class="mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-right">
+      <div class="flex items-center gap-4">
+         <i data-lucide="flame" class="w-10 h-10 text-brand"></i>
+         <h3 class="text-4xl font-black text-white tracking-tight uppercase">
            <span class="lang-uk">ШАУРМА</span><span class="lang-bg">ШАУРМА</span>
          </h3>
       </div>
-      <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
+      <div class="md:ml-6 h-px bg-brand/40 flex-1 w-full"></div>
     </div>
     
-    <div class="grid md:grid-cols-2 gap-4">
-      <!-- 1. Асорті -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurma4.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Assorted" />
+    <div class="grid md:grid-cols-2 gap-6 mb-24">
+      <!-- 1. Класична -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_classicShawerma.PNG" class="menu-img w-full h-full object-cover" alt="Classic" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма асорті</span><span class="lang-bg">Шаурма асорти</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Класична</span><span class="lang-bg">Класическа</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">10€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">6.5€</div>
         </div>
       </div>
-      <!-- 2. Класична -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurme1.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Classic" />
+      <!-- 2. Асорті -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_assorti.PNG" class="menu-img w-full h-full object-cover" alt="Assorti" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма класична</span><span class="lang-bg">Шаурма класическа</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Асорті</span><span class="lang-bg">Асорти</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">6.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">10€</div>
         </div>
       </div>
-      <!-- 3. 5 Сирів -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurma2.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma 5 Cheeses" />
+      <!-- 3. 5 Cheese -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_5TypesCheese.PNG" class="menu-img w-full h-full object-cover" alt="5 Cheeses" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма 5 сирів</span><span class="lang-bg">Шаурма 5 сирена</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">5 сирів</span><span class="lang-bg">5 сирена</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">9.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">9.5€</div>
         </div>
       </div>
-      <!-- 4. Мексиканська -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurma3.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Mexican" />
+      <!-- 4. Mexican -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_mexican.PNG" class="menu-img w-full h-full object-cover" alt="Mexican" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма мексиканська</span><span class="lang-bg">Шаурма мексиканска</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Мексиканська</span><span class="lang-bg">Мексиканска</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">8.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">8.5€</div>
         </div>
       </div>
-      <!-- 5. Вегетаріанська -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurma5.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Vegan" />
+      <!-- 5. Hawaii -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_gawaiskaia.PNG" class="menu-img w-full h-full object-cover" alt="Hawaiian" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма вегетаріанська</span><span class="lang-bg">Шаурма вегетарианска</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Гавайська</span><span class="lang-bg">Хавайска</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">6.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">9.5€</div>
         </div>
       </div>
-      <!-- 6. Солодка -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_shaurma6.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Sweet" />
+      <!-- 6. Sweet -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_sweet.PNG" class="menu-img w-full h-full object-cover" alt="Sweet" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма солодка</span><span class="lang-bg">Шаурма сладка</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Солодка</span><span class="lang-bg">Сладка</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">6.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">6.5€</div>
         </div>
       </div>
-      <!-- 7. З морепродуктами -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_fish1.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Seafood" />
+      <!-- 7. Vegetarian -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_vegeterian.PNG" class="menu-img w-full h-full object-cover" alt="Vegetarian" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма з морепродуктами</span><span class="lang-bg">Шаурма с морски дарове</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Вегетаріанська</span><span class="lang-bg">Вегетарианска</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">9.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">6.5€</div>
         </div>
       </div>
-      <!-- 8. Мідії / Цаца -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_fish2.PNG" class="menu-img w-full h-full object-cover" alt="Mussels" />
+      <!-- 8. Pork -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_porkShawerma.PNG" class="menu-img w-full h-full object-cover" alt="Pork" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Мідії / Цаца</span><span class="lang-bg">Миди / Цаца</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">Зі свининою</span><span class="lang-bg">Със свинско</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">9.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">6.5€</div>
         </div>
       </div>
-      <!-- 9. Зі свининою -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_porkShawerma.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Pork" />
+      <!-- 9. Fish -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_shawermaWithFish.PNG" class="menu-img w-full h-full object-cover" alt="Fish" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма зі свининою</span><span class="lang-bg">Шаурма със свинско</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">З рибою</span><span class="lang-bg">С риба</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">6.5€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">8.5€</div>
         </div>
       </div>
-      <!-- 10. Гавайська -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_gawaiskaia.JPG" class="menu-img w-full h-full object-cover" alt="Shawarma Hawaiian" />
+      <!-- 10. Seafood (CRITICAL JPG) -->
+      <div class="menu-card glass rounded-[2rem] overflow-hidden flex flex-row h-36 sm:h-44 shadow-2xl" data-aos="fade-up">
+        <div class="w-1/3 sm:w-56 h-full shrink-0 relative">
+          <img src="IMG_shawermaWithSeafood.JPG" class="menu-img w-full h-full object-cover" alt="Seafood" />
         </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма гавайська</span><span class="lang-bg">Шаурма хавайска</span>
+        <div class="p-6 flex flex-col justify-center flex-1 relative">
+          <h4 class="font-black text-xl sm:text-2xl text-white uppercase mb-3">
+            <span class="lang-uk">З морепродуктами</span><span class="lang-bg">С морски дарове</span>
           </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">9.5€</span>
-        </div>
-      </div>
-      <!-- 11. Авторська -->
-      <div class="menu-card glass rounded-2xl overflow-hidden flex flex-row h-28 sm:h-32 shadow-lg" data-aos="fade-up">
-        <div class="w-1/3 sm:w-[140px] h-full shrink-0 relative">
-          <img src="IMG_authors.PNG" class="menu-img w-full h-full object-cover" alt="Shawarma Author" />
-        </div>
-        <div class="p-3 sm:p-4 flex flex-col justify-center flex-1 relative">
-          <h4 class="font-bold text-[14px] sm:text-[16px] text-white leading-tight">
-            <span class="lang-uk">Шаурма авторська</span><span class="lang-bg">Шаурма авторска</span>
-          </h4>
-          <span class="menu-price px-2 py-1 rounded-lg font-black text-sm absolute right-3">8€</span>
+          <div class="menu-price w-fit px-5 py-1.5 rounded-xl font-black text-lg">10€</div>
         </div>
       </div>
     </div>
 
-    <!-- SNACKS & DUMPLINGS -->
-    <div class="mt-16 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
-      <div class="flex items-center gap-3">
-         <i data-lucide="cookie" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">
-           <span class="lang-uk">ЗАКУСКИ ТА ПЕЛЬМЕНІ</span><span class="lang-bg">ЗАКУСКИ И ПЕЛМЕНИ</span>
-         </h3>
-      </div>
-      <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_shaurma7.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Fries" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Картопля фрі</span><span class="lang-bg">Пържени картофи</span></h4>
-         </div>
-      </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_shaurma8.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Nuggets" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Нагетси</span><span class="lang-bg">Пилешки хапки</span></h4>
-         </div>
-      </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_shaurma7.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Varenyky" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Вареники</span><span class="lang-bg">Вареники</span></h4>
-         </div>
-      </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_pelmeni.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Pelmeni" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Пельмені</span><span class="lang-bg">Пелмени</span></h4>
-         </div>
-      </div>
-    </div>
-
-    <!-- BBQ & GRILL -->
-    <div class="mt-16 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
-      <div class="flex items-center gap-3">
-         <i data-lucide="drumstick" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">
+    <!-- BBQ & GRILL SECTION -->
+    <div class="mt-24 mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-right">
+      <div class="flex items-center gap-4">
+         <i data-lucide="drumstick" class="w-10 h-10 text-brand"></i>
+         <h3 class="text-4xl font-black text-white tracking-tight uppercase">
            <span class="lang-uk">М'ЯСО НА ГРИЛІ</span><span class="lang-bg">МЕСО НА ГРИЛ</span>
          </h3>
       </div>
-      <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
+      <div class="md:ml-6 h-px bg-brand/40 flex-1 w-full"></div>
     </div>
     
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_porkKebab.PNG" class="w-16 h-16 rounded-lg object-cover" alt="Pork Kebab" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Кебаб свинина</span><span class="lang-bg">Свински кебап</span></h4>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col gap-4 shadow-xl" data-aos="fade-up">
+         <img src="IMG_porkKebab.PNG" class="w-full h-44 rounded-2xl object-cover" alt="Pork Kebab" />
+         <div class="flex flex-col gap-3">
+           <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Кебаб свинина</span><span class="lang-bg">Свински кебап</span></h4>
+           <div class="menu-price w-fit px-4 py-1 rounded-xl font-black text-sm">8€</div>
          </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">8€</span>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_ribs.JPG" class="w-16 h-16 rounded-lg object-cover" alt="Ribs" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Реберця (Ribs)</span><span class="lang-bg">Свински ребра</span></h4>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col gap-4 shadow-xl" data-aos="fade-up" data-aos-delay="100">
+         <img src="IMG_ribs.JPG" class="w-full h-44 rounded-2xl object-cover" alt="Ribs" />
+         <div class="flex flex-col gap-3">
+           <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Реберця (Ribs)</span><span class="lang-bg">Свински ребра</span></h4>
+           <div class="menu-price w-fit px-4 py-1 rounded-xl font-black text-sm">10€</div>
          </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">10€</span>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_chickenWings.PNG" class="w-16 h-16 rounded-lg object-cover" alt="Wings" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Курячі крильця</span><span class="lang-bg">Пилешки крилца</span></h4>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col gap-4 shadow-xl" data-aos="fade-up" data-aos-delay="200">
+         <img src="IMG_chickenWings.PNG" class="w-full h-44 rounded-2xl object-cover" alt="Wings" />
+         <div class="flex flex-col gap-3">
+           <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Курячі крильця</span><span class="lang-bg">Пилешки крилца</span></h4>
+           <div class="menu-price w-fit px-4 py-1 rounded-xl font-black text-sm">8.5€</div>
          </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">8€</span>
+      </div>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col gap-4 shadow-xl" data-aos="fade-up" data-aos-delay="300">
+         <img src="IMG_chicken.PNG" class="w-full h-44 rounded-2xl object-cover" alt="Chicken" />
+         <div class="flex flex-col gap-3">
+           <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Курячий шашлик</span><span class="lang-bg">Пилешки шашлик</span></h4>
+           <div class="menu-price w-fit px-4 py-1 rounded-xl font-black text-sm">9€</div>
+         </div>
       </div>
     </div>
 
-    <!-- SALADS -->
-    <div class="mt-16 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
-      <div class="flex items-center gap-3">
-         <i data-lucide="waves" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">
-           <span class="lang-uk">САЛАТИ</span><span class="lang-bg">САЛАТИ</span>
+    <!-- SECTION 3: SNACKS & SEAFOOD -->
+    <div class="mt-24 mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-right">
+      <div class="flex items-center gap-4">
+         <i data-lucide="utensils-crosshair" class="w-10 h-10 text-brand"></i>
+         <h3 class="text-4xl font-black text-white tracking-tight uppercase">
+           <span class="lang-uk">ЗАКУСКИ ТА ПЕЛЬМЕНІ</span><span class="lang-bg">ЗАКУСКИ И ПЕЛМЕНИ</span>
          </h3>
       </div>
-      <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
+      <div class="md:ml-6 h-px bg-brand/40 flex-1 w-full"></div>
     </div>
     
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_salad.PNG" class="w-16 h-16 rounded-lg object-cover" alt="Caesar" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Салат Цезар</span><span class="lang-bg">Салата Цезар</span></h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">8€</span>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_fries.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Fries" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Картопля фрі</span><span class="lang-bg">Пържени картофи</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">4.5€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_caprese.PNG" class="w-16 h-16 rounded-lg object-cover" alt="Caprese" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Салат Капрезе</span><span class="lang-bg">Салата Капрезе</span></h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">7€</span>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_nugents.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Nuggets" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Нагетси</span><span class="lang-bg">Пилешки хапки</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">6€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_vareniki.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Vareniki" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Вареники</span><span class="lang-bg">Вареники</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">6€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_pelmeni.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Pelmeni" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Пельмені</span><span class="lang-bg">Пелмени</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">7€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_midiiCaca.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Mussels" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Мідії / Цаца</span><span class="lang-bg">Миди / Цаца</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">9.5€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_shrimps.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Shrimps" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Креветки</span><span class="lang-bg">Скариди</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">10€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-4 flex flex-col gap-3 text-center" data-aos="fade-up">
+         <img src="IMG_suluguni.PNG" class="w-full h-32 rounded-2xl object-cover" alt="Suluguni" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Сир сулугуні</span><span class="lang-bg">Сирене сулугуни</span></h4>
+         <div class="menu-price w-full py-1 rounded-lg font-black text-sm">5€</div>
       </div>
     </div>
 
-    <!-- DRINKS -->
-    <div class="mt-16 mb-6 flex flex-col md:flex-row items-center gap-3" data-aos="fade-right">
-      <div class="flex items-center gap-3">
-         <i data-lucide="cup-soda" class="w-7 h-7 text-brand"></i>
-         <h3 class="text-3xl font-bold text-white tracking-wide uppercase">
-           <span class="lang-uk">НАПОЇ</span><span class="lang-bg">НАПИТКИ</span>
+    <!-- SALADS & DRINKS SECTION -->
+    <div class="mt-24 mb-12 flex flex-col md:flex-row items-center gap-6" data-aos="fade-right">
+      <div class="flex items-center gap-4">
+         <i data-lucide="cup-soda" class="w-10 h-10 text-brand"></i>
+         <h3 class="text-4xl font-black text-white tracking-tight uppercase">
+           <span class="lang-uk">САЛАТИ ТА НАПОЇ</span><span class="lang-bg">САЛАТИ И НАПИТКИ</span>
          </h3>
       </div>
-      <div class="md:ml-4 h-px bg-brand/30 flex-1 w-full mt-2 md:mt-0"></div>
+      <div class="md:ml-6 h-px bg-brand/40 flex-1 w-full"></div>
     </div>
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_juice.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Juice" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Сік</span><span class="lang-bg">Сок</span></h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">1€</span>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_salad.PNG" class="w-full h-36 rounded-2xl object-cover" alt="Caesar" />
+         <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Салат Цезар</span><span class="lang-bg">Салата Цезар</span></h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">8€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_fanta,cola,sprite.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Soda" />
-           <h4 class="font-bold text-white">Кола, Фанта, Спрайт</h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">1.5€</span>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_caprese.PNG" class="w-full h-36 rounded-2xl object-cover" alt="Caprese" />
+         <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Салат Капрезе</span><span class="lang-bg">Салата Капрезе</span></h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">7€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_Shivchick.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Shivchick" />
-           <h4 class="font-bold text-white">Живчик</h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">2€</span>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_Shivchick.PNG" class="w-full h-36 rounded-2xl object-contain" alt="Shivchick" />
+         <h4 class="font-black text-lg text-white uppercase">Живчик</h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">2€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_Kvas.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Kvas" />
-           <h4 class="font-bold text-white">Квас</h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">2€</span>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_Kvas.PNG" class="w-full h-36 rounded-2xl object-contain" alt="Kvas" />
+         <h4 class="font-black text-lg text-white uppercase">Квас</h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">2€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_beerDraft.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Beer" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Пиво драфт</span><span class="lang-bg">Наливна бира</span></h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">4€</span>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_juice.PNG" class="w-full h-36 rounded-2xl object-contain" alt="Juice" />
+         <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Сік</span><span class="lang-bg">Сок</span></h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">1.5€</div>
       </div>
-      <div class="menu-card glass rounded-2xl p-4 flex items-center justify-between" data-aos="fade-up">
-         <div class="flex items-center gap-4">
-           <img src="IMG_beerAsortiment.PNG" class="w-12 h-12 rounded-lg object-cover" alt="Beer" />
-           <h4 class="font-bold text-white"><span class="lang-uk">Пиво в асортименті</span><span class="lang-bg">Бира асортимент</span></h4>
-         </div>
-         <span class="menu-price px-3 py-1 rounded-lg font-black">2-5€</span>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_fanta,cola,sprite.PNG" class="w-full h-36 rounded-2xl object-contain" alt="Soda" />
+         <h4 class="font-black text-sm text-white uppercase">Кола/Фанта/Спрайт</h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">1.5€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_beerDraft.PNG" class="w-full h-36 rounded-2xl object-cover" alt="Draft Beer" />
+         <h4 class="font-black text-lg text-white uppercase"><span class="lang-uk">Пиво драфт</span><span class="lang-bg">Наливна бира</span></h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">4€</div>
+      </div>
+      <div class="menu-card glass rounded-3xl p-5 flex flex-col items-center gap-4 text-center" data-aos="fade-up">
+         <img src="IMG_beerAsortiment.PNG" class="w-full h-36 rounded-2xl object-cover" alt="Beer Assorted" />
+         <h4 class="font-black text-sm text-white uppercase"><span class="lang-uk">Пиво в асорт.</span><span class="lang-bg">Бира асорт.</span></h4>
+         <div class="menu-price px-6 py-1.5 rounded-xl font-black text-base">2-5€</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews" class="py-24 px-4 bg-[#010a12] relative border-y border-white/5">
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="text-center mb-12" data-aos="fade-up">
-      <h2 class="font-black text-white text-3xl sm:text-4xl tracking-tight uppercase">
-        <span class="lang-uk">Відгуки</span><span class="lang-bg">Отзиви</span>
+<!-- REVIEWS SECTION -->
+<section id="reviews" class="py-32 px-4 bg-black/40 relative border-y border-white/5">
+  <div class="max-w-6xl mx-auto relative z-10 text-center">
+    <div class="mb-16" data-aos="fade-up">
+      <h2 class="font-black text-white text-4xl sm:text-5xl tracking-tight uppercase mb-4">
+        <span class="lang-uk">Відгуки клієнтів</span><span class="lang-bg">Отзиви на клиенти</span>
       </h2>
-      <div class="flex justify-center flex-row gap-1 mt-4">
-        <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
-        <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
-        <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
-        <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
-        <i data-lucide="star" class="w-5 h-5 text-accent fill-accent"></i>
+      <div class="flex justify-center gap-1.5">
+        <i data-lucide="star" class="w-6 h-6 text-accent fill-accent"></i>
+        <i data-lucide="star" class="w-6 h-6 text-accent fill-accent"></i>
+        <i data-lucide="star" class="w-6 h-6 text-accent fill-accent"></i>
+        <i data-lucide="star" class="w-6 h-6 text-accent fill-accent"></i>
+        <i data-lucide="star" class="w-6 h-6 text-accent fill-accent"></i>
       </div>
     </div>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="glass p-6 rounded-2xl" data-aos="fade-up">
-        <p class="text-sm text-gray-300 italic">"Найкраща шаурма на узбережжі! М'ясо соковите, соус просто бомба."</p>
-        <div class="mt-4 font-bold text-white text-sm">Максим В.</div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-8 rounded-[2rem] text-left" data-aos="fade-up">
+        <p class="text-gray-300 italic mb-6 leading-relaxed">"Найкраща шаурма на узбережжі! М'ясо соковите, соус просто бомба. Рекомендую!"</p>
+        <div class="font-black text-white text-sm uppercase">Олександр М.</div>
       </div>
-      <div class="glass p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-        <p class="text-sm text-gray-300 italic">"Много вкусна храна! Калмарите са фантастични, а обслужването е на ниво."</p>
-        <div class="mt-4 font-bold text-white text-sm">Anna Ivanova</div>
+      <div class="glass p-8 rounded-[2rem] text-left" data-aos="fade-up" data-aos-delay="100">
+        <p class="text-gray-300 italic mb-6 leading-relaxed">"Много вкусна храна! Калмарите са фантастични. Браво на екипа!"</p>
+        <div class="font-black text-white text-sm uppercase">Svetlana I.</div>
       </div>
-      <div class="glass p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-        <p class="text-sm text-gray-300 italic">"Шашлик просто тане у роті. Дякую за шматочок Одеси в Болгарії!"</p>
-        <div class="mt-4 font-bold text-white text-sm">Oleksandr K.</div>
+      <div class="glass p-8 rounded-[2rem] text-left" data-aos="fade-up" data-aos-delay="200">
+        <p class="text-gray-300 italic mb-6 leading-relaxed">"Справжній одеський вайб у Болгарії. Дякуємо за смачну вечерю!"</p>
+        <div class="font-black text-white text-sm uppercase">Дмитро К.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer id="footer" class="relative bg-[#02050A] border-t border-brand/20 pt-16 pb-12 px-4 z-10">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-12 mb-12">
+<footer id="footer" class="relative bg-[#02050A] border-t border-brand/40 pt-24 pb-12 px-4 z-10 overflow-hidden">
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="grid md:grid-cols-4 gap-16 mb-20">
       <div class="col-span-1 md:col-span-2">
-        <div class="flex items-center gap-3 mb-6">
-          <i data-lucide="anchor" class="w-8 h-8 text-brand"></i>
-          <div class="font-mont font-900 text-2xl tracking-tight text-white leading-none">ШАУРМАМА</div>
+        <div class="flex items-center gap-4 mb-8">
+          <i data-lucide="anchor" class="w-10 h-10 text-brand"></i>
+          <div class="font-mont font-900 text-3xl tracking-tighter text-white uppercase leading-none">ШАУРМАМА</div>
         </div>
-        <p class="text-gray-400 text-sm max-w-sm">
-          <span class="lang-uk">Справжня одеська кухня в самому серці Сонячного берега. Тільки найсвіжіші продукти та авторські рецепти.🌊</span>
-          <span class="lang-bg">Истинският вкус на Черно море в Слънчев бряг. Само пресни продукти и авторски рецепти.🌊</span>
+        <p class="text-gray-400 text-lg max-w-sm leading-relaxed mb-8">
+          <span class="lang-uk">Справжній смак Одеси в Болгарії. Тільки найсвіжіші продукти та авторські рецепти.🌊</span>
+          <span class="lang-bg">Истинският вкус на Одеса в България. Само пресни продукти и авторски рецепти.🌊</span>
         </p>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all transform hover:-translate-y-2">
+            <i data-lucide="instagram" class="w-7 h-7"></i>
+          </a>
+          <a href="https://t.me/odessa_shaurmama" target="_blank" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all transform hover:-translate-y-2">
+            <i data-lucide="send" class="w-7 h-7"></i>
+          </a>
+        </div>
       </div>
       
       <div>
-        <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm"><span class="lang-uk">Контакти</span><span class="lang-bg">Контакти</span></h4>
-        <ul class="space-y-4 text-sm">
+        <h4 class="text-white font-black mb-8 uppercase tracking-widest text-sm"><span class="lang-uk">Контакти</span><span class="lang-bg">Контакти</span></h4>
+        <ul class="space-y-6 text-base">
           <li>
-            <a href="https://www.google.com/maps/place/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0+%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%D0%BC%D0%B0+%7C+Odessa+-+Shaurmama/@42.7097592,27.7308556,17z/data=!3m1!4b1!4m6!3m5!1s0x40a69f603771120b:0x3210bf9bb659e4d3!8m2!3d42.7097592!4d27.7308556!16s%2Fg%2F11xkr_mdr5!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-accent transition-colors">
-              <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i>
-              <span>Luxury Beach Dolphin, Sunny Beach</span>
+            <a href="https://www.google.com/maps/place/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%B0+%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%D0%BC%D0%B0" target="_blank" class="flex items-start gap-4 text-gray-400 hover:text-accent transition-colors group">
+              <i data-lucide="map-pin" class="w-6 h-6 text-brand shrink-0 group-hover:scale-110 transition-transform"></i>
+              <span class="leading-relaxed">Luxury Beach Dolphin,<br>Sunny Beach, Bulgaria</span>
             </a>
           </li>
           <li>
-            <a href="tel:+359882789795" class="flex items-center gap-3 text-gray-400 hover:text-accent transition-colors">
-              <i data-lucide="phone" class="w-5 h-5 text-brand"></i>
-              <span>+359 88 278 9795</span>
+            <a href="tel:+359882789795" class="flex items-center gap-4 text-gray-400 hover:text-accent transition-colors group">
+              <i data-lucide="phone" class="w-6 h-6 text-brand shrink-0 group-hover:scale-110 transition-transform"></i>
+              <span class="font-black text-xl">+359 88 278 9795</span>
             </a>
           </li>
         </ul>
       </div>
       
       <div>
-        <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm"><span class="lang-uk">Ми в мережі</span><span class="lang-bg">Ние сме онлайн</span></h4>
-        <div class="flex gap-4">
-          <a href="https://www.instagram.com/Odessa.shaurmama/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all">
-            <i data-lucide="instagram" class="w-5 h-5"></i>
-          </a>
-          <a href="https://t.me/odessa_shaurmama" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all">
-            <i data-lucide="send" class="w-5 h-5"></i>
-          </a>
-          <button onclick="shareWebsite()" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-all">
-            <i data-lucide="share-2" class="w-5 h-5"></i>
-          </button>
+        <h4 class="text-white font-black mb-8 uppercase tracking-widest text-sm"><span class="lang-uk">Час роботи</span><span class="lang-bg">Работно време</span></h4>
+        <div class="text-gray-400 font-bold space-y-2">
+          <p class="text-white text-xl">11:00 - 23:00</p>
+          <p class="text-xs text-gray-600 uppercase tracking-widest">
+            <span class="lang-uk">Відчинено щодня</span>
+            <span class="lang-bg">Отворено всеки ден</span>
+          </p>
         </div>
       </div>
     </div>
     
-    <div class="pt-8 border-t border-white/5 text-center text-xs text-gray-500">
-      <p>© 2024 Shaurmama Sunny Beach. All rights reserved.</p>
+    <div class="pt-8 border-t border-white/5 text-center">
+      <p class="text-xs text-gray-600 font-black tracking-widest uppercase">© 2024 Shaurmama Sunny Beach. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
-<!-- ORDER MODAL (CLEAN VERSION) -->
-<div id="order-modal" class="fixed inset-0 z-[110] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 transition-opacity opacity-0">
-  <div class="bg-[#020C14] border border-brand/30 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(0,85,129,0.3)] transform scale-95 transition-transform" id="order-modal-content">
-    <div class="relative h-48 sm:h-56">
-      <img id="modal-img" src="" class="w-full h-full object-cover" alt="Order item">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#020C14] to-transparent"></div>
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 transition-colors border border-white/10">
-        <i data-lucide="x" class="w-5 h-5"></i>
+<!-- ORDER MODAL -->
+<div id="order-modal" class="fixed inset-0 z-[110] bg-black/95 backdrop-blur-xl hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+  <div class="bg-[#020C14] border border-brand/40 rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-[0_0_100px_rgba(0,85,129,0.5)] transform scale-90 transition-transform duration-300" id="order-modal-content">
+    <div class="relative h-64 sm:h-80">
+      <img id="modal-img" src="" class="w-full h-full object-cover" alt="Order">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#020C14] via-transparent to-transparent"></div>
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-300 hover:text-white bg-black/60 backdrop-blur-lg rounded-full p-3 transition-all border border-white/10 hover:rotate-90">
+        <i data-lucide="x" class="w-6 h-6"></i>
       </button>
     </div>
-    <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <h3 class="text-2xl font-bold text-white">
+    <div class="p-8 sm:p-10">
+      <div class="flex justify-between items-end mb-10">
+        <div class="flex-1">
+          <h3 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter leading-none mb-2">
             <span class="lang-uk modal-title-uk">Назва</span>
             <span class="lang-bg modal-title-bg">Име</span>
           </h3>
+          <div class="text-accent font-black tracking-widest text-[0.6rem] uppercase opacity-60">Selected Premium Item</div>
         </div>
-        <div class="text-accent font-black text-2xl modal-price">0€</div>
+        <div class="text-accent font-900 text-4xl modal-price drop-shadow-lg">0€</div>
       </div>
-      <a id="modal-order-button" href="#" target="_blank" class="w-full bg-brand text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-[#004066] transition-all shadow-lg shadow-brand/30 group">
-        <i data-lucide="shopping-cart" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-        <span class="lang-uk">Замовити у WhatsApp</span>
-        <span class="lang-bg">Поръчай в WhatsApp</span>
+      <a id="modal-order-button" href="#" target="_blank" class="w-full bg-brand text-white font-black text-xl py-6 rounded-2xl flex items-center justify-center gap-4 hover:bg-[#004066] transition-all shadow-2xl shadow-brand/30 group">
+        <i data-lucide="shopping-cart" class="w-7 h-7 group-hover:scale-125 transition-transform"></i>
+        <span class="lang-uk">ЗАМОВИТИ У WHATSAPP</span>
+        <span class="lang-bg">ПОРЪЧАЙ В WHATSAPP</span>
       </a>
+      <p class="text-center text-gray-500 text-[0.65rem] mt-8 font-bold uppercase tracking-widest">Immediate order via WhatsApp Messenger</p>
     </div>
   </div>
 </div>
@@ -712,7 +718,7 @@
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
+  AOS.init({ duration: 1000, easing: 'ease-out-expo', once: true, offset: 50 });
   lucide.createIcons();
 
   function setLang(lang) {
@@ -742,18 +748,17 @@
       document.querySelector('.modal-price').innerText = price;
       modalImg.src = imgSrc;
 
-      // Update WhatsApp link
       const itemName = document.documentElement.lang === 'uk' ? ukTitle : bgTitle;
       modalOrderBtn.href = `https://wa.me/359882789795?text=Order: ${encodeURIComponent(itemName)}`;
 
       modal.classList.remove('hidden');
       modal.style.display = 'flex';
-      setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95'); }, 10);
+      setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-90'); }, 50);
     });
   });
 
   function closeModal() {
-    modal.classList.add('opacity-0'); modalContent.classList.add('scale-95');
+    modal.classList.add('opacity-0'); modalContent.classList.add('scale-90');
     setTimeout(() => { modal.classList.add('hidden'); modal.style.display = 'none'; }, 300);
   }
 
@@ -761,24 +766,15 @@
     const badge = document.getElementById('status-badge');
     const now = new Date();
     const hour = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Sofia', hour: 'numeric', hour12: false }).format(now);
-    const isOpen = hour >= 11 && hour < 21;
+    const isOpen = hour >= 11 && hour < 23; 
     const lang = document.documentElement.lang;
 
     const msg = isOpen 
-        ? (lang === 'uk' ? 'Відчинено - Чекаємо на вас!' : 'Отворено - Очакваме ви!')
-        : (lang === 'uk' ? 'Зачинено - Відкриття об 11:00' : 'Затворено - Отваряне в 11:00');
+        ? (lang === 'uk' ? 'ВІДЧИНЕНО' : 'ОТВОРЕНО')
+        : (lang === 'uk' ? 'ЗАЧИНЕНО' : 'ЗАТВОРЕНО');
     
-    badge.innerHTML = `<div class="w-2.5 h-2.5 rounded-full ${isOpen ? 'bg-green-500 animate-pulse' : 'bg-red-500'}"></div>
+    badge.innerHTML = `<div class="w-3 h-3 rounded-full ${isOpen ? 'bg-green-500 animate-pulse' : 'bg-red-500'}"></div>
                        <span class="${isOpen ? 'text-green-400' : 'text-red-400'}">${msg}</span>`;
-  }
-
-  function shareWebsite() {
-    const url = window.location.href;
-    if (navigator.share) {
-      navigator.share({ title: 'Одеса Шаурмама', url: url }).catch(console.error);
-    } else {
-      navigator.clipboard.writeText(url).then(() => { alert('URL copied to clipboard!'); });
-    }
   }
 
   window.addEventListener('scroll', () => {
@@ -794,4 +790,3 @@
 </script>
 </body>
 </html>
- 
